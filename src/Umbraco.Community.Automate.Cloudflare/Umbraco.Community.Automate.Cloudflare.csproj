@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AssemblyName>Umbraco.Community.Automate.Cloudflare</AssemblyName>
+    <RootNamespace>Umbraco.Community.Automate.Cloudflare</RootNamespace>
+    <PackageId>Umbraco.Community.Automate.Cloudflare</PackageId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Umbraco.Cms" />
+  </ItemGroup>
+
+</Project>
