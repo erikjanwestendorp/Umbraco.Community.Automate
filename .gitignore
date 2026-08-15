@@ -482,3 +482,6 @@ $RECYCLE.BIN/
 
 # Vim temporary swap files
 *.swp
+src/Umbraco.Community.Automate.Cloudflare/umbraco-package-schema.json
+src/Umbraco.Community.Automate.Cloudflare/umbraco-package-schema.json
+/src/Umbraco.Community.Automate.Cloudflare/umbraco-package-schema.json
