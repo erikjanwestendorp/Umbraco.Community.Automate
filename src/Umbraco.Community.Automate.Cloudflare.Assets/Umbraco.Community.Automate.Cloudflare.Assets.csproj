@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AssemblyName>Umbraco.Community.Automate.Cloudflare.Assets</AssemblyName>
+    <RootNamespace>Umbraco.Community.Automate.Cloudflare.Assets</RootNamespace>
+    <PackageId>Umbraco.Community.Automate.Cloudflare.Assets</PackageId>
+  </PropertyGroup>
+
+</Project>
