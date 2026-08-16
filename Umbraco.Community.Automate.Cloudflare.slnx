@@ -1,8 +1,10 @@
 <Solution>
   <Folder Name="/examples/">
-    <Project Path="examples/Umbraco.Community.Automate.Cloudflare.Site.17.x/Umbraco.Community.Automate.Cloudflare.Site.17.x.csproj" />
+    <Project Path="examples/Umbraco.Community.Automate.Cloudflare.Site.17.x/Umbraco.Community.Automate.Site.17.x.csproj" />
   </Folder>
   <Folder Name="/src/">
+    <Project Path="src/Umbraco.Community.Automate.Extensions/Umbraco.Community.Automate.Extensions.csproj" />
+    <Project Path="src/Umbraco.Community.Automate/Umbraco.Community.Automate.csproj" />
     <Project Path="src/Umbraco.Community.Automate.Cloudflare.Assets/Umbraco.Community.Automate.Cloudflare.Assets.csproj" />
     <Project Path="src/Umbraco.Community.Automate.Cloudflare/Umbraco.Community.Automate.Cloudflare.csproj" />
   </Folder>
