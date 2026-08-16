@@ -1,8 +1,15 @@
 <Project>
-  <PropertyGroup>
-    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
-  </PropertyGroup>
-  <ItemGroup>
-    <PackageVersion Include="Umbraco.Cms" Version="[17.0.0, 18.0.0)" />
-  </ItemGroup>
+	<PropertyGroup>
+		<ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+	</PropertyGroup>
+	
+	<ItemGroup>
+		<!--Umbraco CMS Packages-->
+		<PackageVersion Include="Umbraco.Cms.Core" Version="[17.4.0, 18.0.0)" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<!--Umbraco Products Packages-->
+		<PackageVersion Include="Umbraco.Automate.Core" Version="[17.0.0, 18.0.0)" />
+	</ItemGroup>
 </Project>
