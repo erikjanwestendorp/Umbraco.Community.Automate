@@ -1,0 +1,59 @@
+name: Publish NuGet Packages
+
+on:
+  push:
+    tags:
+      - '*' 
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Restore Umbraco.Community.Automate
+        run: dotnet restore ./src/Umbraco.Community.Automate/Umbraco.Community.Automate.csproj
+      
+      - name: Restore Umbraco.Community.Automate.Cloudflare
+        run: dotnet restore ./src/Umbraco.Community.Automate.Cloudflare/Umbraco.Community.Automate.Cloudflare.csproj
+
+      - name: Restore Umbraco.Community.Automate.Extensions
+        run: dotnet restore ./src/Umbraco.Community.Automate.Extensions/Umbraco.Community.Automate.Extensions.csproj
+
+      - name: Build Umbraco.Community.Automate
+        run: dotnet build ./src/Umbraco.Community.Automate/Umbraco.Community.Automate.csproj --configuration Release --no-restore
+
+      - name: Build Umbraco.Community.Automate.Cloudflare
+        run: dotnet build ./src/Umbraco.Community.Automate.Cloudflare/Umbraco.Community.Automate.Cloudflare.csproj --configuration Release --no-restore
+        
+      - name: Build Umbraco.Community.Automate.Extensions
+        run: dotnet build ./src/Umbraco.Community.Automate.Extensions/Umbraco.Community.Automate.Extensions.csproj --configuration Release --no-restore
+
+      - name: Pack Umbraco.Community.Automate
+        run: dotnet pack ./src/Umbraco.Community.Automate/Umbraco.Community.Automate.csproj --configuration Release --no-build --output ./nupkg
+
+      - name: Pack Umbraco.Community.Automate.Cloudflare
+        run: dotnet pack ./src/Umbraco.Community.Automate.Cloudflare/Umbraco.Community.Automate.Cloudflare.csproj --configuration Release --no-build --output ./nupkg
+
+      - name: Pack Umbraco.Community.Automate.Extensions
+        run: dotnet pack ./src/Umbraco.Community.Automate.Extensions/Umbraco.Community.Automate.Extensions.csproj --configuration Release --no-build --output ./nupkg
+      
+      - name: NuGet login
+        uses: NuGet/login@v1
+        id: login
+        with:
+          user: ${{ secrets.NUGET_USER }}
+
+      - name: Push all .nupkg files to NuGet
+        run: dotnet nuget push ./nupkg/*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ steps.login.outputs.NUGET_API_KEY }} --skip-duplicate
