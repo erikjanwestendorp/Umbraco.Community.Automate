@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AssemblyName>Umbraco.Community.Automate</AssemblyName>
+    <RootNamespace>Umbraco.Community.Automate</RootNamespace>
+    <PackageId>Umbraco.Community.Automate</PackageId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Umbraco.Community.Automate.Cloudflare\Umbraco.Community.Automate.Cloudflare.csproj" />
+    <ProjectReference Include="..\Umbraco.Community.Automate.Extensions\Umbraco.Community.Automate.Extensions.csproj" />
+  </ItemGroup>
+
+</Project>
