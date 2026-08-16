@@ -5,6 +5,8 @@
   <Folder Name="/src/">
     <Project Path="src/Umbraco.Community.Automate.Extensions/Umbraco.Community.Automate.Extensions.csproj" />
     <Project Path="src/Umbraco.Community.Automate/Umbraco.Community.Automate.csproj" />
+    <File Path="src/Directory.Build.props" />
+    <File Path="src/Directory.Packages.props" />
     <Project Path="src/Umbraco.Community.Automate.Cloudflare/Umbraco.Community.Automate.Cloudflare.csproj" />
   </Folder>
 </Solution>
