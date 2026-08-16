@@ -27,30 +27,58 @@ public sealed class CloudflareConnectionType
         CancellationToken cancellationToken)
     {
         if (settings is not CloudflareConnectionSettings typed)
-            return ConnectionValidationResult.Failure("Cloudflare connection settings are missing.");
+        {
+            return ConnectionValidationResult.Failure(
+                "Cloudflare connection settings are missing.");
+        }
 
         if (string.IsNullOrWhiteSpace(typed.ApiToken))
-            return ConnectionValidationResult.Failure("An API token is required.");
+        {
+            return ConnectionValidationResult.Failure(
+                "An API token is required.");
+        }
+
+        if (string.IsNullOrWhiteSpace(typed.AccountId))
+        {
+            return ConnectionValidationResult.Failure(
+                "An Account ID is required.");
+        }
 
         if (string.IsNullOrWhiteSpace(typed.ZoneId))
-            return ConnectionValidationResult.Failure("A Zone ID is required.");
+        {
+            return ConnectionValidationResult.Failure(
+                "A Zone ID is required.");
+        }
 
         try
         {
             using var client = _httpClientFactory.CreateClient();
+
             using var request = new HttpRequestMessage(
                 HttpMethod.Get,
-                "https://api.cloudflare.com/client/v4/user/tokens/verify");
+                $"https://api.cloudflare.com/client/v4/accounts/{typed.AccountId.Trim()}/tokens/verify");
 
             request.Headers.Authorization =
-                new AuthenticationHeaderValue("Bearer", typed.ApiToken);
+                new AuthenticationHeaderValue(
+                    "Bearer",
+                    typed.ApiToken.Trim());
 
-            using var response = await client.SendAsync(request, cancellationToken);
+            using var response =
+                await client.SendAsync(request, cancellationToken);
 
-            return response.IsSuccessStatusCode
-                ? ConnectionValidationResult.Success("Successfully connected to Cloudflare.")
-                : ConnectionValidationResult.Failure(
-                    $"Cloudflare rejected the API token: {response.ReasonPhrase}");
+            if (response.IsSuccessStatusCode)
+            {
+                return ConnectionValidationResult.Success(
+                    "Successfully connected to Cloudflare.");
+            }
+
+            var responseBody =
+                await response.Content.ReadAsStringAsync(cancellationToken);
+
+            return ConnectionValidationResult.Failure(
+                $"Cloudflare rejected the API token: " +
+                $"{(int)response.StatusCode} {response.ReasonPhrase}",
+                [responseBody]);
         }
         catch (Exception ex)
         {
