@@ -1,9 +1,22 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<AssemblyName>Umbraco.Community.Automate.Cloudflare</AssemblyName>
 		<RootNamespace>Umbraco.Community.Automate.Cloudflare</RootNamespace>
 		<PackageId>Umbraco.Community.Automate.Cloudflare</PackageId>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<Version>17.0.0-beta1</Version>
+		<PackageId>Umbraco.Community.Automate.Cloudflare</PackageId>
+		<Product>Umbraco.Community.Automate.Cloudflare</Product>
+		<Title>Umbraco.Community.Automate.Cloudflare</Title>
+		<Description>Extension package for Umbraco.Automate to purge Cloudflare cache</Description>
+		<Authors>Erik-Jan Westendorp</Authors>
+		<PackageTags>umbraco plugin package cloudflare cache</PackageTags>
+		<PackageProjectUrl>https://github.com/erikjanwestendorp/Umbraco.Community.Automate.Cloudflare</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/erikjanwestendorp/Umbraco.Community.Automate.Cloudflare</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
 	</PropertyGroup>
 
 	<ItemGroup>
