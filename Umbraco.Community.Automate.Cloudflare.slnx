@@ -3,7 +3,6 @@
     <Project Path="examples/Umbraco.Community.Automate.Cloudflare.Site.17.x/Umbraco.Community.Automate.Cloudflare.Site.17.x.csproj" />
   </Folder>
   <Folder Name="/src/">
-    <Project Path="src/Umbraco.Community.Automate.Cloudflare.Assets/Umbraco.Community.Automate.Cloudflare.Assets.csproj" />
     <Project Path="src/Umbraco.Community.Automate.Cloudflare/Umbraco.Community.Automate.Cloudflare.csproj" />
   </Folder>
 </Solution>
