@@ -1,10 +1,23 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <AssemblyName>Umbraco.Community.Automate.Extensions</AssemblyName>
-    <RootNamespace>Umbraco.Community.Automate.Extensions</RootNamespace>
-    <PackageId>Umbraco.Community.Automate.Extensions</PackageId>
-  </PropertyGroup>
+	<PropertyGroup>
+		<AssemblyName>Umbraco.Community.Automate.Extensions</AssemblyName>
+		<RootNamespace>Umbraco.Community.Automate.Extensions</RootNamespace>
+		<PackageId>Umbraco.Community.Automate.Extensions</PackageId>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<Version>17.0.0-beta1</Version>
+		<PackageId>Umbraco.Community.Automate.Extensions</PackageId>
+		<Product>Umbraco.Community.Automate.Extensions</Product>
+		<Title>Umbraco.Community.Automate.Extensions</Title>
+		<Description>Extension package for Umbraco.Automate</Description>
+		<Authors>Erik-Jan Westendorp</Authors>
+		<PackageTags>umbraco plugin package published content urls</PackageTags>
+		<PackageProjectUrl>https://github.com/erikjanwestendorp/Umbraco.Community.Automate</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/erikjanwestendorp/Umbraco.Community.Automate</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+	</PropertyGroup>
 
 	<ItemGroup>
 		<!--Umbraco CMS Packages-->

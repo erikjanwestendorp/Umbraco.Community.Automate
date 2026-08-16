@@ -1,14 +1,27 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <AssemblyName>Umbraco.Community.Automate</AssemblyName>
-    <RootNamespace>Umbraco.Community.Automate</RootNamespace>
-    <PackageId>Umbraco.Community.Automate</PackageId>
-  </PropertyGroup>
+	<PropertyGroup>
+		<AssemblyName>Umbraco.Community.Automate</AssemblyName>
+		<RootNamespace>Umbraco.Community.Automate</RootNamespace>
+		<PackageId>Umbraco.Community.Automate</PackageId>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Umbraco.Community.Automate.Cloudflare\Umbraco.Community.Automate.Cloudflare.csproj" />
-    <ProjectReference Include="..\Umbraco.Community.Automate.Extensions\Umbraco.Community.Automate.Extensions.csproj" />
-  </ItemGroup>
+	<PropertyGroup>
+		<Version>17.0.0-beta1</Version>
+		<PackageId>Umbraco.Community.Automate</PackageId>
+		<Product>Umbraco.Community.Automate</Product>
+		<Title>Umbraco.Community.Automate</Title>
+		<Description>Extension package for Umbraco.Automate</Description>
+		<Authors>Erik-Jan Westendorp</Authors>
+		<PackageTags>umbraco plugin package automate extensions</PackageTags>
+		<PackageProjectUrl>https://github.com/erikjanwestendorp/Umbraco.Community.Automate</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/erikjanwestendorp/Umbraco.Community.Automate</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Umbraco.Community.Automate.Cloudflare\Umbraco.Community.Automate.Cloudflare.csproj" />
+		<ProjectReference Include="..\Umbraco.Community.Automate.Extensions\Umbraco.Community.Automate.Extensions.csproj" />
+	</ItemGroup>
 
 </Project>
