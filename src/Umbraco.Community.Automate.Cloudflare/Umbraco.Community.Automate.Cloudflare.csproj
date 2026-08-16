@@ -1,13 +1,19 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <AssemblyName>Umbraco.Community.Automate.Cloudflare</AssemblyName>
-    <RootNamespace>Umbraco.Community.Automate.Cloudflare</RootNamespace>
-    <PackageId>Umbraco.Community.Automate.Cloudflare</PackageId>
-  </PropertyGroup>
+	<PropertyGroup>
+		<AssemblyName>Umbraco.Community.Automate.Cloudflare</AssemblyName>
+		<RootNamespace>Umbraco.Community.Automate.Cloudflare</RootNamespace>
+		<PackageId>Umbraco.Community.Automate.Cloudflare</PackageId>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Umbraco.Cms.Core" />
-  </ItemGroup>
+	<ItemGroup>
+		<!--Umbraco CMS Packages-->
+		<PackageReference Include="Umbraco.Cms.Core" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<!--Umbraco Products Packages-->
+		<PackageReference Include="Umbraco.Automate.Core" />
+	</ItemGroup>
 
 </Project>
