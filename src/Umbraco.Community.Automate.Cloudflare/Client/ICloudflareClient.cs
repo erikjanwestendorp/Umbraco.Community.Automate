@@ -2,9 +2,9 @@
 
 public interface ICloudflareClient
 {
-    Task PurgeUrlAsync(
+    Task PurgeUrlsAsync(
         string apiToken,
         string zoneId,
-        string url,
+        IEnumerable<string> urls,
         CancellationToken cancellationToken = default);
 }

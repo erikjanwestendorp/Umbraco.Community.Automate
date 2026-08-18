@@ -5,25 +5,25 @@ namespace Umbraco.Community.Automate.Cloudflare.Client;
 
 internal sealed class CloudflareClient(HttpClient httpClient) : ICloudflareClient
 {
-    public async Task PurgeUrlAsync(
+    public async Task PurgeUrlsAsync(
         string apiToken,
         string zoneId,
-        string url,
+        IEnumerable<string> urls,
         CancellationToken cancellationToken = default)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(apiToken);
         ArgumentException.ThrowIfNullOrWhiteSpace(zoneId);
-        ArgumentException.ThrowIfNullOrWhiteSpace(url);
 
-        if (!Uri.TryCreate(url, UriKind.Absolute, out _))
-            throw new ArgumentException($"'{url}' is not a valid absolute URL.", nameof(url));
+        ArgumentNullException.ThrowIfNull(urls);
+
+        var files = urls.ToArray();
 
         using var request = new HttpRequestMessage(
             HttpMethod.Post,
             $"zones/{zoneId}/purge_cache");
 
         request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", apiToken);
-        request.Content = JsonContent.Create(new { files = new[] { url } });
+        request.Content = JsonContent.Create(new { files });
 
         using var response = await httpClient.SendAsync(request, cancellationToken);
 

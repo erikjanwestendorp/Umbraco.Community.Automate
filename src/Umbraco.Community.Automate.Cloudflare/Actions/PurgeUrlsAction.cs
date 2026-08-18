@@ -5,18 +5,18 @@ using Umbraco.Community.Automate.Cloudflare.Connections;
 namespace Umbraco.Community.Automate.Cloudflare.Actions;
 
 [Action(
-    AutomateCloudflareConstants.Actions.PurgeUrl.Alias,
-    AutomateCloudflareConstants.Actions.PurgeUrl.Name,
-    Description = AutomateCloudflareConstants.Actions.PurgeUrl.Description,
+    AutomateCloudflareConstants.Actions.PurgeUrls.Alias,
+    AutomateCloudflareConstants.Actions.PurgeUrls.Name,
+    Description = AutomateCloudflareConstants.Actions.PurgeUrls.Description,
     Group = AutomateCloudflareConstants.Groups.Cloudflare,
     Icon = AutomateCloudflareConstants.Icons.Cloud,
     ConnectionTypeAlias = AutomateCloudflareConstants.ConnectionTypes.Cloudflare.Alias)]
-public class PurgeUrlAction
-    : ActionBase<PurgeUrlSettings, PurgeUrlOutput>
+public sealed class PurgeUrlsAction
+    : ActionBase<PurgeUrlsSettings, PurgeUrlsOutput>
 {
     private readonly ICloudflareClient _cloudflareClient;
 
-    public PurgeUrlAction(
+    public PurgeUrlsAction(
         ActionInfrastructure infrastructure,
         ICloudflareClient cloudflareClient)
         : base(infrastructure)
@@ -28,19 +28,24 @@ public class PurgeUrlAction
         ActionContext context,
         CancellationToken cancellationToken)
     {
-        var settings = context.GetSettings<PurgeUrlSettings>();
+        var settings = context.GetSettings<PurgeUrlsSettings>();
 
-        if (string.IsNullOrWhiteSpace(settings.Url))
-        {
-            return ActionResult.Failed(new ArgumentException("A URL is required."));
-        }
-            
+        var urls = (settings.Urls ?? [])
+            .Where(u => !string.IsNullOrWhiteSpace(u))
+            .Select(u => u.Trim())
+            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .ToArray();
 
-        if (!Uri.TryCreate(settings.Url, UriKind.Absolute, out _))
+        if (urls.Length == 0)
         {
-            return ActionResult.Failed(new ArgumentException($"'{settings.Url}' is not a valid absolute URL."));
+            return ActionResult.Failed(new ArgumentException("At least one URL is required."));
         }
-            
+
+        var invalidUrl = Array.Find(urls, u => !Uri.TryCreate(u, UriKind.Absolute, out _));
+        if (invalidUrl is not null)
+        {
+            return ActionResult.Failed(new ArgumentException($"'{invalidUrl}' is not a valid absolute URL."));
+        }
 
         var connection = context.Connection
             ?? throw new InvalidOperationException("A Cloudflare connection is required.");
@@ -48,12 +53,16 @@ public class PurgeUrlAction
         var connectionSettings =
             connection.GetSettings<CloudflareConnectionSettings>();
 
-        await _cloudflareClient.PurgeUrlAsync(
+        await _cloudflareClient.PurgeUrlsAsync(
             connectionSettings.ApiToken,
             connectionSettings.ZoneId,
-            settings.Url,
+            urls,
             cancellationToken);
 
-        return Success(new PurgeUrlOutput { PurgedUrl = settings.Url });
+        return Success(new PurgeUrlsOutput
+        {
+            PurgedUrlCount = urls.Length,
+            PurgedUrls = urls,
+        });
     }
 }
