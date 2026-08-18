@@ -9,4 +9,9 @@
     <File Path="src/Directory.Packages.props" />
     <Project Path="src/Umbraco.Community.Automate.Cloudflare/Umbraco.Community.Automate.Cloudflare.csproj" />
   </Folder>
+  <Folder Name="/tests/">
+    <File Path="tests/Directory.Build.props" />
+    <File Path="tests/Directory.Packages.props" />
+    <Project Path="tests/Umbraco.Community.Automate.Cloudflare.Tests/Umbraco.Community.Automate.Cloudflare.Tests.csproj" />
+  </Folder>
 </Solution>

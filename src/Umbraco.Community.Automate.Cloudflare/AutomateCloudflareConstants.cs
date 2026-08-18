@@ -4,11 +4,11 @@ internal static class AutomateCloudflareConstants
 {
     internal static class Actions
     {
-        public static class PurgeUrl
+        public static class PurgeUrls
         {
-            public const string Alias = "community.cloudflare.purgeUrl";
-            public const string Name = "Purge Cloudflare URL";
-            public const string Description = "Purge a specific URL from the Cloudflare cache.";
+            public const string Alias = "community.cloudflare.purgeUrls";
+            public const string Name = "Purge Cloudflare URLs";
+            public const string Description = "Purge one or more URLs from the Cloudflare cache.";
         }
     }
     internal static class ConnectionTypes
