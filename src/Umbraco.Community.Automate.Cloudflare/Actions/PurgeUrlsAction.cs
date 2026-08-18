@@ -1,4 +1,5 @@
-﻿using Umbraco.Automate.Core.Actions;
+﻿using System.Text.Json;
+using Umbraco.Automate.Core.Actions;
 using Umbraco.Automate.Core.Bindings;
 using Umbraco.Community.Automate.Cloudflare.Client;
 using Umbraco.Community.Automate.Cloudflare.Connections;
@@ -53,6 +54,9 @@ public sealed class PurgeUrlsAction
                     .Cast<string>()
                     .ToArray(),
 
+            string json =>
+                TryDeserializeUrls(json),
+
             _ => []
         };
 
@@ -90,5 +94,22 @@ public sealed class PurgeUrlsAction
             PurgedUrlCount = urls.Length,
             PurgedUrls = urls,
         });
+    }
+
+    private static string[] TryDeserializeUrls(string value)
+    {
+        if (string.IsNullOrWhiteSpace(value))
+        {
+            return [];
+        }
+
+        try
+        {
+            return JsonSerializer.Deserialize<string[]>(value) ?? [];
+        }
+        catch (JsonException)
+        {
+            return [value];
+        }
     }
 }
