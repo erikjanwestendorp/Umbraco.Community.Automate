@@ -1,4 +1,5 @@
 ﻿using Umbraco.Automate.Core.Actions;
+using Umbraco.Automate.Core.Bindings;
 using Umbraco.Community.Automate.Cloudflare.Client;
 using Umbraco.Community.Automate.Cloudflare.Connections;
 
@@ -15,13 +16,16 @@ public sealed class PurgeUrlsAction
     : ActionBase<PurgeUrlsSettings, PurgeUrlsOutput>
 {
     private readonly ICloudflareClient _cloudflareClient;
+    private readonly BindingEvaluator _bindingEvaluator;
 
     public PurgeUrlsAction(
         ActionInfrastructure infrastructure,
-        ICloudflareClient cloudflareClient)
+        ICloudflareClient cloudflareClient,
+        BindingEvaluator bindingEvaluator)
         : base(infrastructure)
     {
         _cloudflareClient = cloudflareClient;
+        _bindingEvaluator = bindingEvaluator;
     }
 
     public override async Task<ActionResult> ExecuteAsync(
@@ -30,7 +34,29 @@ public sealed class PurgeUrlsAction
     {
         var settings = context.GetSettings<PurgeUrlsSettings>();
 
-        var urls = (settings.Urls ?? [])
+        var value = _bindingEvaluator.EvaluateRaw(
+            settings.Urls,
+            context.BindingData
+                ?? new Dictionary<string, object?>());
+
+        var urls = value switch
+        {
+            string[] array => array,
+
+            IEnumerable<string> enumerable =>
+                enumerable.ToArray(),
+
+            IEnumerable<object?> objects =>
+                objects
+                    .Select(x => x?.ToString())
+                    .Where(x => !string.IsNullOrWhiteSpace(x))
+                    .Cast<string>()
+                    .ToArray(),
+
+            _ => []
+        };
+
+        urls = urls
             .Where(u => !string.IsNullOrWhiteSpace(u))
             .Select(u => u.Trim())
             .Distinct(StringComparer.OrdinalIgnoreCase)

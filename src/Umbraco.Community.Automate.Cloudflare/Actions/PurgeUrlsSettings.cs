@@ -6,7 +6,7 @@ public sealed class PurgeUrlsSettings
 {
     [Field(
         Label = "URLs",
-        Description = "Absolute URLs to purge from the Cloudflare cache.",
+        Description = "A binding expression that resolves to the absolute URLs to purge from the Cloudflare cache.",
         SupportsBindings = true)]
-    public string[] Urls { get; set; } = [];
+    public string Urls { get; set; } = string.Empty;
 }
