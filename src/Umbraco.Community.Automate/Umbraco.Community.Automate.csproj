@@ -7,17 +7,25 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<Version>17.0.0-beta2</Version>
+		<Version>17.0.0-beta3</Version>
 		<PackageId>Umbraco.Community.Automate</PackageId>
 		<Product>Umbraco.Community.Automate</Product>
 		<Title>Umbraco.Community.Automate</Title>
 		<Description>Extension package for Umbraco.Automate</Description>
 		<Authors>Erik-Jan Westendorp</Authors>
 		<PackageTags>umbraco plugin package automate extensions</PackageTags>
+		<PackageIcon>heading-icon-128.png</PackageIcon>
 		<PackageProjectUrl>https://github.com/erikjanwestendorp/Umbraco.Community.Automate</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/erikjanwestendorp/Umbraco.Community.Automate</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="..\..\assets\community-automate-128.png" Pack="true" PackagePath="\" />
+		<None Include="..\..\LICENSE" Pack="true" PackagePath="\" />
+	</ItemGroup>
+
 
 	<ItemGroup>
 		<ProjectReference Include="..\Umbraco.Community.Automate.Cloudflare\Umbraco.Community.Automate.Cloudflare.csproj" />
