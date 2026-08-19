@@ -7,17 +7,24 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<Version>17.0.0-beta2</Version>
+		<Version>17.0.0-beta3</Version>
 		<PackageId>Umbraco.Community.Automate.Cloudflare</PackageId>
 		<Product>Umbraco.Community.Automate.Cloudflare</Product>
 		<Title>Umbraco.Community.Automate.Cloudflare</Title>
 		<Description>Extension package for Umbraco.Automate to purge Cloudflare cache</Description>
 		<Authors>Erik-Jan Westendorp</Authors>
 		<PackageTags>umbraco plugin package cloudflare cache</PackageTags>
-		<PackageProjectUrl>https://github.com/erikjanwestendorp/Umbraco.Community.Automate.Cloudflare</PackageProjectUrl>
-		<RepositoryUrl>https://github.com/erikjanwestendorp/Umbraco.Community.Automate.Cloudflare</RepositoryUrl>
+		<PackageIcon>heading-icon-128.png</PackageIcon>
+		<PackageProjectUrl>https://github.com/erikjanwestendorp/Umbraco.Community.Automate</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/erikjanwestendorp/Umbraco.Community.Automate</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="..\..\assets\community-automate-128.png" Pack="true" PackagePath="\" />
+		<None Include="..\..\LICENSE" Pack="true" PackagePath="\" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<!--Umbraco CMS Packages-->
