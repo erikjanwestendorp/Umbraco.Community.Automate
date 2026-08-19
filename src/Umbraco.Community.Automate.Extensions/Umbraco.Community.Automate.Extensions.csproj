@@ -14,7 +14,7 @@
 		<Description>Extension package for Umbraco.Automate</Description>
 		<Authors>Erik-Jan Westendorp</Authors>
 		<PackageTags>umbraco plugin package published content urls</PackageTags>
-		<PackageIcon>heading-icon-128.png</PackageIcon>
+		<PackageIcon>community-automate-128.png</PackageIcon>
 		<PackageProjectUrl>https://github.com/erikjanwestendorp/Umbraco.Community.Automate</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/erikjanwestendorp/Umbraco.Community.Automate</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
