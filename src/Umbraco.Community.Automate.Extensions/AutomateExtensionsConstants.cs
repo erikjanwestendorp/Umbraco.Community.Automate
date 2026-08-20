@@ -12,6 +12,16 @@ internal static class AutomateExtensionsConstants
         }
     }
 
+    internal static class Triggers
+    {
+        internal static class HealthCheckCompleted
+        {
+            public const string Alias = "community.extensions.healthCheckCompleted";
+            public const string Name = "Health Check Completed";
+            public const string Description = "Fires when an Umbraco health check execution has completed.";
+        }
+    }
+
     internal static class Groups
     {
         public const string Community = "Community";
@@ -20,5 +30,6 @@ internal static class AutomateExtensionsConstants
     internal static class Icons
     {
         public const string Link = "icon-link";
+        public const string Health = "icon-health";
     }
 }

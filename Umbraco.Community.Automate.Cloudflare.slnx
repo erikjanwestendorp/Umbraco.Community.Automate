@@ -13,5 +13,6 @@
     <File Path="tests/Directory.Build.props" />
     <File Path="tests/Directory.Packages.props" />
     <Project Path="tests/Umbraco.Community.Automate.Cloudflare.Tests/Umbraco.Community.Automate.Cloudflare.Tests.csproj" />
+    <Project Path="tests/Umbraco.Community.Automate.Extensions.Tests/Umbraco.Community.Automate.Extensions.Tests.csproj" />
   </Folder>
 </Solution>
