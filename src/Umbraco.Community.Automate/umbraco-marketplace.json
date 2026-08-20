@@ -1,0 +1,36 @@
+{
+  "$schema": "https://marketplace.umbraco.com/umbraco-marketplace-schema.json",
+  "Title": "[Community] Automate",
+  "Description": "A collection of community-built extensions and integrations for Umbraco Automate, providing reusable building blocks for creating powerful automation workflows.",
+  "AuthorDetails": {
+    "Name": "Erik-Jan Westendorp",
+    "Description": ".NET Developer at ilionx, Umbraco MVP",
+    "Url": "https://github.com/erikjanwestendorp",
+    "ImageUrl": "https://github.com/erikjanwestendorp.png",
+    "SyncContributorsFromRepository": true
+  },
+  "Category": "Developer Tools",
+  "LicenseTypes": ["Free"],
+  "PackageType": "Package",
+  "DocumentationUrl": "https://github.com/erikjanwestendorp/Umbraco.Community.Automate",
+  "IssueTrackerUrl": "https://github.com/erikjanwestendorp/Umbraco.Community.Automate/issues",
+  "RelatedPackages": [
+    {
+      "PackageId": "Umbraco.Community.Automate.Extensions",
+      "Description": "Generic reusable actions, triggers and connections for Umbraco Automate."
+    },
+    {
+      "PackageId": "Umbraco.Community.Automate.Cloudflare",
+      "Description": "Cloudflare integration for purging cached URLs from Umbraco Automate workflows."
+    }
+  ],
+  "Tags": [
+    "automate",
+    "automation",
+    "workflow",
+    "community",
+    "extensions",
+    "integrations"
+  ],
+  "LookingForContributors": true
+}
