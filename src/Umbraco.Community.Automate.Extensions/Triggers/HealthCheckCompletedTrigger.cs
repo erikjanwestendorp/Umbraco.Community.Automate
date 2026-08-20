@@ -41,8 +41,8 @@ public sealed class HealthCheckCompletedTrigger(
             {
                 AllChecksSuccessful = notification.HealthCheckResults.AllChecksSuccessful,
                 TotalChecks = groupedResults.Count,
-                SuccessfulChecks = CountChecks(notification.HealthCheckResults, StatusResultType.Success) +
-                                   CountChecks(notification.HealthCheckResults, StatusResultType.Info),
+                SuccessfulChecks = CountChecks(notification.HealthCheckResults, StatusResultType.Success),
+                InfoChecks = CountChecks(notification.HealthCheckResults, StatusResultType.Info),
                 WarningChecks = CountChecks(notification.HealthCheckResults, StatusResultType.Warning),
                 FailedChecks = CountChecks(notification.HealthCheckResults, StatusResultType.Error),
                 Results = groupedResults
@@ -98,6 +98,8 @@ public sealed class HealthCheckCompletedTrigger(
             .Append(output.TotalChecks)
             .Append('|')
             .Append(output.SuccessfulChecks)
+            .Append('|')
+            .Append(output.InfoChecks)
             .Append('|')
             .Append(output.WarningChecks)
             .Append('|')

@@ -63,7 +63,8 @@ public sealed class HealthCheckCompletedTriggerTests
 
         Assert.False(output.AllChecksSuccessful);
         Assert.Equal(4, output.TotalChecks);
-        Assert.Equal(2, output.SuccessfulChecks);
+        Assert.Equal(1, output.SuccessfulChecks);
+        Assert.Equal(1, output.InfoChecks);
         Assert.Equal(1, output.WarningChecks);
         Assert.Equal(1, output.FailedChecks);
         Assert.Equal(4, output.Results.Length);

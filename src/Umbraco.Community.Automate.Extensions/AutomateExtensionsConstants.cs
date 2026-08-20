@@ -16,9 +16,9 @@ internal static class AutomateExtensionsConstants
     {
         internal static class HealthCheckCompleted
         {
-        	public const string Alias = "community.extensions.healthCheckCompleted";
-        	public const string Name = "Health Check Completed";
-        	public const string Description = "Fires when an Umbraco health check execution has completed.";
+            public const string Alias = "community.extensions.healthCheckCompleted";
+            public const string Name = "Health Check Completed";
+            public const string Description = "Fires when an Umbraco health check execution has completed.";
         }
     }
 
