@@ -54,10 +54,10 @@ public sealed class HealthCheckCompletedTriggerTests
                 Assert.Single(mappedEvents));
 
         Assert.Equal(
-            AutomateExtensionsConstants.Triggers.HealthCheckCompleted.Alias,
+            "community.extensions.healthCheckCompleted",
             mappedEvent.TriggerAlias);
         Assert.Equal("system", mappedEvent.InitiatorType);
-        Assert.NotEmpty(mappedEvent.IdempotencyKey);
+        Assert.False(string.IsNullOrWhiteSpace(mappedEvent.IdempotencyKey));
 
         var output = mappedEvent.Output;
 
@@ -69,19 +69,19 @@ public sealed class HealthCheckCompletedTriggerTests
         Assert.Equal(4, output.Results.Length);
 
         var successResult =
-            Assert.Single(output.Results.Where(result => result.Name == "Success check"));
+            Assert.Single(output.Results, result => result.Name == "Success check");
         Assert.Equal("Content", successResult.Group);
         Assert.Equal("Success", successResult.Status);
         Assert.Equal("Everything is healthy.", successResult.Message);
 
         var warningResult =
-            Assert.Single(output.Results.Where(result => result.Name == "Warning check"));
+            Assert.Single(output.Results, result => result.Name == "Warning check");
         Assert.Equal("Members", warningResult.Group);
         Assert.Equal("Warning", warningResult.Status);
         Assert.Equal("Something needs attention.", warningResult.Message);
 
         var failedResult =
-            Assert.Single(output.Results.Where(result => result.Name == "Error check"));
+            Assert.Single(output.Results, result => result.Name == "Error check");
         Assert.Equal("Settings", failedResult.Group);
         Assert.Equal("Error", failedResult.Status);
         Assert.Equal("Something failed.", failedResult.Message);
@@ -124,6 +124,13 @@ public sealed class HealthCheckCompletedTriggerTests
     private sealed class NullEditableModelResolver : IEditableModelResolver
     {
         public EditableModelSchema Resolve(Type type) => throw new NotSupportedException();
+
+        public TModel? ResolveModel<TModel>(string modelId, object? data, EditableModelSchema? schema = null)
+            where TModel : class, new()
+            => throw new NotSupportedException();
+
+        public object? ResolveModel(string modelId, Type type, object? data, EditableModelSchema? schema = null)
+            => throw new NotSupportedException();
     }
 
     [HealthCheck("11111111-1111-1111-1111-111111111111", "Success check", Description = "Success", Group = "Content")]
