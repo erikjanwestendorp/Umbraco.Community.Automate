@@ -122,6 +122,43 @@ public sealed class HealthCheckCompletedTriggerTests
         Assert.Equal(firstEvent.IdempotencyKey, secondEvent.IdempotencyKey);
     }
 
+    [Fact]
+    public async Task MapEvent_MultiStatusCheckCountsDistinctChecksAndPreservesAllStatuses()
+    {
+        var healthChecks =
+            new HealthCheckCollection(
+                () =>
+                [
+                    new MultiStatusWarningHealthCheck()
+                ]);
+
+        var trigger =
+            new HealthCheckCompletedTrigger(
+                new TriggerInfrastructure(new NullEditableModelResolver()),
+                healthChecks);
+
+        var notification =
+            new HealthCheckCompletedNotification(
+                await HealthCheckResults.Create(
+                [
+                    new MultiStatusWarningHealthCheck()
+                ]));
+
+        var mappedEvent =
+            Assert.IsType<TriggerEvent<HealthCheckCompletedTriggerOutput>>(
+                Assert.Single(trigger.MapEvent(notification)));
+
+        Assert.True(mappedEvent.Output.AllChecksSuccessful);
+        Assert.Equal(1, mappedEvent.Output.TotalChecks);
+        Assert.Equal(0, mappedEvent.Output.SuccessfulChecks);
+        Assert.Equal(0, mappedEvent.Output.InfoChecks);
+        Assert.Equal(1, mappedEvent.Output.WarningChecks);
+        Assert.Equal(0, mappedEvent.Output.FailedChecks);
+        Assert.Equal(2, mappedEvent.Output.Results.Length);
+        Assert.Contains(mappedEvent.Output.Results, result => result.Status == "Success");
+        Assert.Contains(mappedEvent.Output.Results, result => result.Status == "Warning");
+    }
+
     private sealed class NullEditableModelResolver : IEditableModelResolver
     {
         public EditableModelSchema Resolve(Type type) => throw new NotSupportedException();
@@ -184,6 +221,23 @@ public sealed class HealthCheckCompletedTriggerTests
             new HealthCheckStatus("Informational result.")
             {
                 ResultType = StatusResultType.Info
+            }
+        ]);
+    }
+
+    [HealthCheck("55555555-5555-5555-5555-555555555555", "Multi-status warning check", Description = "Multi", Group = "Content")]
+    private sealed class MultiStatusWarningHealthCheck : HealthCheck
+    {
+        public override Task<IEnumerable<HealthCheckStatus>> GetStatusAsync()
+        => Task.FromResult<IEnumerable<HealthCheckStatus>>(
+        [
+            new HealthCheckStatus("Part one passed.")
+            {
+                ResultType = StatusResultType.Success
+            },
+            new HealthCheckStatus("Part two needs attention.")
+            {
+                ResultType = StatusResultType.Warning
             }
         ]);
     }

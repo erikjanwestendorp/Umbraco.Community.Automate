@@ -69,17 +69,23 @@ public sealed class HealthCheckCompletedTrigger(
         };
     }
 
-    private static Dictionary<string, IReadOnlyList<HealthCheckStatus>> GetGroupedResults(HealthCheckResults results)
+    private static Dictionary<string, List<HealthCheckStatus>> GetGroupedResults(HealthCheckResults results)
     {
         var groupedResults =
-            new Dictionary<string, IReadOnlyList<HealthCheckStatus>>(
+            new Dictionary<string, List<HealthCheckStatus>>(
                 StringComparer.OrdinalIgnoreCase);
 
         foreach (var statusBucket in StatusBuckets)
         {
             foreach (var group in results.GetResultsForStatus(statusBucket) ?? [])
             {
-                groupedResults[group.Key] = group.Value.ToArray();
+                if (!groupedResults.TryGetValue(group.Key, out var statuses))
+                {
+                    statuses = [];
+                    groupedResults[group.Key] = statuses;
+                }
+
+                statuses.AddRange(group.Value);
             }
         }
 
