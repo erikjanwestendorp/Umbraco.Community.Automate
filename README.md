@@ -9,9 +9,6 @@ The repository currently contains two packages:
 - **Umbraco.Community.Automate.Extensions** — generic actions and extensions for Umbraco Automate.
 - **Umbraco.Community.Automate.Cloudflare** — Cloudflare integration for purging cached URLs.
 
-> [!IMPORTANT]
-> These packages are currently in **beta** and are being actively developed.
-
 ## Requirements
 
 The current packages target:
@@ -28,7 +25,7 @@ Generic extensions for Umbraco Automate that are not tied to a specific third-pa
 Install using:
 
 ```bash
-dotnet add package Umbraco.Community.Automate.Extensions --prerelease
+dotnet add package Umbraco.Community.Automate.Extensions
 ```
 
 #### Get Published Content URLs
@@ -88,7 +85,7 @@ Adds Cloudflare integration to Umbraco Automate.
 Install using:
 
 ```bash
-dotnet add package Umbraco.Community.Automate.Cloudflare --prerelease
+dotnet add package Umbraco.Community.Automate.Cloudflare
 ```
 
 The package currently provides:
