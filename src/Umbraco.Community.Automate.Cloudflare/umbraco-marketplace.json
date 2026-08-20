@@ -1,0 +1,37 @@
+{
+  "$schema": "https://marketplace.umbraco.com/umbraco-marketplace-schema.json",
+  "Title": "Automate Cloudflare",
+  "Description": "A Cloudflare integration for Umbraco Automate that adds a reusable connection and actions for purging cached URLs as part of configurable automation workflows.",
+  "AuthorDetails": {
+    "Name": "Erik-Jan Westendorp",
+    "Description": ".NET Developer at ilionx, Umbraco MVP",
+    "Url": "https://github.com/erikjanwestendorp",
+    "ImageUrl": "https://github.com/erikjanwestendorp.png",
+    "SyncContributorsFromRepository": true
+  },
+  "Category": "Developer Tools",
+  "LicenseTypes": ["Free"],
+  "PackageType": "Integration",
+  "DocumentationUrl": "https://github.com/erikjanwestendorp/Umbraco.Community.Automate",
+  "IssueTrackerUrl": "https://github.com/erikjanwestendorp/Umbraco.Community.Automate/issues",
+  "RelatedPackages": [
+    {
+      "PackageId": "Umbraco.Community.Automate",
+      "Description": "The complete collection of Umbraco Community Automate extensions and integrations."
+    },
+    {
+      "PackageId": "Umbraco.Community.Automate.Extensions",
+      "Description": "Provides generic actions such as resolving all published URLs for a content item and culture."
+    }
+  ],
+  "Tags": [
+    "automate",
+    "automation",
+    "cloudflare",
+    "cache",
+    "cdn",
+    "cache purge",
+    "integration"
+  ],
+  "LookingForContributors": true
+}
