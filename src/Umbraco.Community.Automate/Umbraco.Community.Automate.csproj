@@ -7,13 +7,13 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<Version>17.0.0</Version>
+		<Version>17.0.1</Version>
 		<PackageId>Umbraco.Community.Automate</PackageId>
 		<Product>Umbraco.Community.Automate</Product>
 		<Title>Umbraco.Community.Automate</Title>
 		<Description>Extension package for Umbraco.Automate</Description>
 		<Authors>Erik-Jan Westendorp</Authors>
-		<PackageTags>umbraco plugin package automate extensions</PackageTags>
+		<PackageTags>umbraco-marketplace umbraco plugin package automate extensions</PackageTags>
 		<PackageIcon>community-automate-128.png</PackageIcon>
 		<PackageProjectUrl>https://github.com/erikjanwestendorp/Umbraco.Community.Automate/tree/main/src/Umbraco.Community.Automate</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/erikjanwestendorp/Umbraco.Community.Automate</RepositoryUrl>
@@ -26,6 +26,11 @@
 		<None Include="..\..\assets\community-automate-128.png" Pack="true" PackagePath="\" />
 		<None Include="README.md" Pack="true" PackagePath="\" />
 		<None Include="..\..\LICENSE" Pack="true" PackagePath="\" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<!--Umbraco CMS Packages-->
+		<PackageReference Include="Umbraco.Cms.Core" />
 	</ItemGroup>
 
 
