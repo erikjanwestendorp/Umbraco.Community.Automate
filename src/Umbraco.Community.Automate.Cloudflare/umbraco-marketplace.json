@@ -1,6 +1,6 @@
 {
   "$schema": "https://marketplace.umbraco.com/umbraco-marketplace-schema.json",
-  "Title": "Umbraco Community Automate Cloudflare",
+  "Title": "Automate Cloudflare",
   "Description": "A Cloudflare integration for Umbraco Automate that adds a reusable connection and actions for purging cached URLs as part of configurable automation workflows.",
   "AuthorDetails": {
     "Name": "Erik-Jan Westendorp",

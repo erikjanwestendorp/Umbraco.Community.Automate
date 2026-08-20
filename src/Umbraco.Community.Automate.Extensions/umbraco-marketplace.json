@@ -1,7 +1,7 @@
 {
   "$schema": "https://marketplace.umbraco.com/umbraco-marketplace-schema.json",
-  "Title": "Community Automate",
-  "Description": "A collection of community-built extensions and integrations for Umbraco Automate, providing reusable building blocks for creating powerful automation workflows.",
+  "Title": "Automate Extensions",
+  "Description": "Generic reusable actions and extensions for Umbraco Automate, including helpers for resolving published content URLs by culture and hostname.",
   "AuthorDetails": {
     "Name": "Erik-Jan Westendorp",
     "Description": ".NET Developer at ilionx, Umbraco MVP",
@@ -16,21 +16,22 @@
   "IssueTrackerUrl": "https://github.com/erikjanwestendorp/Umbraco.Community.Automate/issues",
   "RelatedPackages": [
     {
-      "PackageId": "Umbraco.Community.Automate.Extensions",
-      "Description": "Generic reusable actions, triggers and connections for Umbraco Automate."
+      "PackageId": "Umbraco.Community.Automate",
+      "Description": "The complete collection of Umbraco Community Automate extensions and integrations."
     },
     {
       "PackageId": "Umbraco.Community.Automate.Cloudflare",
-      "Description": "Cloudflare integration for purging cached URLs from Umbraco Automate workflows."
+      "Description": "Use the published content URL actions together with Cloudflare cache purging workflows."
     }
   ],
   "Tags": [
     "automate",
     "automation",
-    "workflow",
-    "community",
     "extensions",
-    "integrations"
+    "published content",
+    "urls",
+    "cultures",
+    "domains"
   ],
   "LookingForContributors": true
 }
